@@ -23,14 +23,14 @@ query_3 = (
 
 
 def print_views_result(log):
-    # Prints out query results
+    ''' Prints out query results '''
     for data in log:
         print("%s - %s views" % (data[0], data[1]))
     print
 
 
 def connect(dbname="news"):
-    # Connects to databse, else, it throws an exception
+    ''' Connects to databse, else, it throws an exception '''
     try:
         db = psycopg2.connect("dbname={}".format(dbname))
         c = db.cursor()
@@ -40,7 +40,7 @@ def connect(dbname="news"):
 
 
 def get_top_three_articles():
-    # Extracts the top three articles arcoding to viewership
+    ''' Extracts the top three articles arcoding to viewership '''
     c, db = connect()
     c.execute(query_1)
     log = c.fetchall()
@@ -51,7 +51,7 @@ get_top_three_articles()
 
 
 def get_most_popular_article_authors():
-    # Extracts most popular author according to views of their article
+    ''' Extracts most popular author according to views of their article '''
     c, db = connect()
     c = db.cursor()
     c.execute(query_2)
@@ -63,9 +63,9 @@ get_most_popular_article_authors()
 
 
 def get_error_greater_than_one_percent_of_request():
-    # Gets the date where more than one percent of request led to errors
-    # Note that this query has custom tables (views) used to extract the data.
-    # Check the README file for more info.
+    ''' Gets the date where more than one percent of request led to errors
+    Note that this query has custom tables (views) used to extract the data.
+    Check the README file for more info. '''
     c, db = connect()
     c = db.cursor()
     c.execute(query_3)
