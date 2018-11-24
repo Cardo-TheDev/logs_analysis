@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 import psycopg2
 
 
@@ -26,7 +26,7 @@ def print_views_result(log):
     ''' Prints out query results '''
     for data in log:
         print("%s - %s views" % (data[0], data[1]))
-    print
+    print()
 
 
 def connect(dbname="news"):
@@ -36,7 +36,7 @@ def connect(dbname="news"):
         c = db.cursor()
         return c, db
     except:
-        print "Did not connect to database!!!"
+        print("Did not connect to database!!!")
 
 
 def get_top_three_articles():
@@ -45,7 +45,7 @@ def get_top_three_articles():
     c.execute(query_1)
     log = c.fetchall()
     db.close()
-    print "The top three articles are:"
+    print("The top three articles are:")
     print_views_result(log)
 get_top_three_articles()
 
@@ -57,7 +57,7 @@ def get_most_popular_article_authors():
     c.execute(query_2)
     log = c.fetchall()
     db.close()
-    print "The most popular authors according to viewership are:"
+    print("The most popular authors according to viewership are:")
     print_views_result(log)
 get_most_popular_article_authors()
 
@@ -71,7 +71,7 @@ def get_error_greater_than_one_percent_of_request():
     c.execute(query_3)
     log = c.fetchall()
     db.close()
-    print "The day(s) where more than 1% percent of request led to errors are:"
+    print("The day(s) where more than 1% percent of request led to errors are:")
     for data in log:
         print ("%s - %s %% errors" % (data[0], data[1]))
 get_error_greater_than_one_percent_of_request()
