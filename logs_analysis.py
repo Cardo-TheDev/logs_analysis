@@ -37,6 +37,7 @@ def connect(dbname="news"):
         return c, db
     except psycopg2.DatabaseError as error:
         print("Did not connect to database!!!")
+        print(error)
 
 
 def get_top_three_articles():
@@ -49,8 +50,6 @@ def get_top_three_articles():
     print_views_result(log)
 
 
-get_top_three_articles()
-
 
 def get_most_popular_article_authors():
     # Extracts most popular author according to views of their article
@@ -62,8 +61,6 @@ def get_most_popular_article_authors():
     print("The most popular authors according to viewership are:")
     print_views_result(log)
 
-
-get_most_popular_article_authors()
 
 
 def get_error_greater_than_one_percent_of_request():
@@ -81,4 +78,11 @@ def get_error_greater_than_one_percent_of_request():
         print("%s - %s %% errors" % (data[0], data[1]))
 
 
-get_error_greater_than_one_percent_of_request()
+def main():
+    get_most_popular_article_authors()
+    get_top_three_articles()
+    get_error_greater_than_one_percent_of_request()
+
+
+if __name__ == '__main__':
+    main()
