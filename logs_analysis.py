@@ -14,7 +14,7 @@ query_2 = (
     "group by name order by views desc;")
 query_3 = (
     "select request_count.date, "
-    "round(((error_count*100)/total_request::numeric), 2) from "
+    "round(((error_count)/total_request::numeric)*100, 2) from "
     "request_count, one_percent_requests, errors "
     "where request_count.date = one_percent_requests.date and "
     "one_percent_requests.date = errors.date "
@@ -77,7 +77,7 @@ def get_error_greater_than_one_percent_of_request():
     log = c.fetchall()
     db.close()
     print("The day(s) where more than 1% percent of"
-          "request led to errors are:")
+          " request led to errors are:")
     for data in log:
         print("%s - %s %% errors" % (data[0], data[1]))
 

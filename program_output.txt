@@ -9,5 +9,5 @@ Rudolf von Treppenwitz - 423457 views
 Anonymous Contributor - 170098 views
 Markoff Chaney - 84557 views
 
-The day(s) where more than 1% percent of request led to errors are:
+The day(s) where more than 1% percent of requests led to errors are:
 2016-07-17 - 2.26 % errors

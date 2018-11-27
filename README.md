@@ -14,7 +14,7 @@ You'll run these program using a Unix-style terminal on your computer; the point
 - Download and Install [vagrant](https://www.vagrantup.com/downloads.html). You can check if vagrant is installed by running `vagrant --version`
 - Download the [VM configuration](https://s3.amazonaws.com/video.udacity-data.com/topher/2018/April/5acfbfa3_fsnd-virtual-machine/fsnd-virtual-machine.zip). Unzip the file. Using the terminal, navigate into the vagrant subdirectory.
 - Clone the **_logs-analysis_** project and move it into the vagrant subdirectory. This particular step can actually be done at any point in time, but to avoid any confusion, do this.
-- From your terminal, inside the vagrant subdirectory, run the command `vagrant up`. This will cause Vagrant to download the Linux operating system and install it. This may take quite a while (many minutes) depending on how fast your Internet connection is. When vagrant up is finished running, you will get your shell prompt back. At this point, you can run `vagrant ssh` to log in to your newly installed Linux VM! Inside the VM, change directory to /vagrant and look around with ls.
+- From your terminal, inside the vagrant subdirectory, run the command `vagrant up`. This will cause Vagrant to download the Linux operating system and install it. This may take quite a while (many minutes) depending on how fast your Internet connection is. When vagrant up is finished running, you will get your shell prompt back. At this point, you can run `vagrant ssh` to log in to your newly installed Linux VM! Inside the VM, change directory to **/vagrant** and look around with `ls`.
 
 The files you see here are the same as the ones in the vagrant subdirectory on your computer (where you started Vagrant from). Any file you create in one will be automatically shared to the other. This means that you can edit code in your favorite text editor, and run it inside the VM.
 
@@ -39,12 +39,10 @@ The desired output will then be displayed on your terminal.
 ### Custom Views Created:
 
 ```
-create view requests as select left(cast (time as text), 10) as date, status from log group by time, status;
+create view request_count as select left(cast (time as text), 10) as date, count(status) as total_request from log group by date;
 
-create view errors as select date, count(status) as error_count from requests where status = '404 NOT FOUND' group by date;
+create view errors as select left(cast (time as text), 10) as date,count(status) as error_count from log where status = '404 NOT FOUND' group by date;
 
-create view one_percent_requests as select date, count (status)/100 as one_percent from requests group by date;
-
-create view request_count as select date, count(status) as total_request from requests group by date;
+create view one_percent_requests as select left(cast (time as text), 10) as date, count(status)/100 as one_percent from log group by date;
 
 ```
