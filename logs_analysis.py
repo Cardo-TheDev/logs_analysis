@@ -3,22 +3,22 @@ import psycopg2
 
 
 query_1 = (
-    "select title, count(path) as views from articles,"
-    "log where articles.slug = substring(path, 10) group by path,"
-    "title order by views desc limit 3")
+    "SELECT title, COUNT(path) AS views FROM articles,"
+    "log WHERE articles.slug = SUBSTRING(path, 10) GROUP BY path,"
+    "title ORDER BY views DESC LIMIT 3")
 query_2 = (
-    "select name, count (substring(path, 10)) as views from authors, articles,"
+    "SELECT name, COUNT(SUBSTRING(path, 10)) AS views FROM authors, articles,"
     "log "
-    "where authors.id = articles.author and "
-    "articles.slug = substring(path, 10)"
-    "group by name order by views desc;")
+    "WHERE authors.id = articles.author AND "
+    "articles.slug = SUBSTRING(path, 10)"
+    "GROUP BY name ORDER BY views DESC;")
 query_3 = (
-    "select request_count.date, "
-    "round(((error_count)/total_request::numeric)*100, 2) from "
+    "SELECT request_count.date, "
+    "ROUND(((error_count)/total_request::numeric)*100, 2) FROM "
     "request_count, one_percent_requests, errors "
-    "where request_count.date = one_percent_requests.date and "
+    "WHERE request_count.date = one_percent_requests.date AND "
     "one_percent_requests.date = errors.date "
-    "and error_count > one_percent group by request_count.date, error_count,"
+    "AND error_count > one_percent GROUP BY request_count.date, error_count,"
     "total_request;")
 
 
