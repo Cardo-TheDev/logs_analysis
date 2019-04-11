@@ -3,7 +3,7 @@
 ## About
 
 This is an internal reporting tool that will use information from the database
-to discover what kind of articles the site's readers like. The tool interacts
+to discover what kind of articles the site readers like. The tool interacts
 with a large database, with over a million rows, using complex queries to draw
 business conclusions. The database contains newspaper articles, as well as the
 web server log for the site. The log has a database row for each time a reader
@@ -12,10 +12,8 @@ the site's user activity. The program will run from the command line. It won't
 take any input from the user. Instead, it will connect to that database, use SQL
 queries to analyze the log data, and print out the answers to some questions.
 
-This tool is based on a project form Udacit's Full Stack Nanodegree program,
-Intro to Relational Database. Building an informative summary from logs is a
-real task that comes up very often in software engineering.
-
+This tool is based on a project form Udacity's Full Stack Nanodegree program––
+Intro to Relational Database.
 ### What is needed:
 You'll run these program using a Unix-style terminal on your computer; the
 point of it is to be able to offer the same software (Linux and PostgreSQL)
